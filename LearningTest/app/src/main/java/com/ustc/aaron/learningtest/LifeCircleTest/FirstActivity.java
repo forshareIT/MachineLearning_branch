@@ -20,6 +20,9 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener{
         tv_first = (TextView) findViewById(R.id.tv_first);
         tv_first.setOnClickListener(this);
         Intent intent = new Intent();
+		
+		System.out.print("");
+		
 //        intent.resolveActivity(getPackageManager());
         
     }
