@@ -43,6 +43,11 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <option name="sshConnectionType" value="PRIVATE_KEY" />
+    <option name="sshPrivateKeyPath" value="C:\Users\Administrator\Desktop\USTC_Github_privateKey.ppk" />
+  </component>
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
