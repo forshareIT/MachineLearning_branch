@@ -21,7 +21,7 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener{
         tv_first.setOnClickListener(this);
         Intent intent = new Intent();
 		
-		System.out.print("hsdf");
+		System.out.print("h888");
 		
 //        intent.resolveActivity(getPackageManager());
         
