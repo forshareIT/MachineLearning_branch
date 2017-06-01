@@ -1,66 +1,123 @@
 package com.ustc.aaron.learningtest.base;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
 
-import com.ustc.aaron.learningtest.R;
 
+import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/1.
+ * Created by penglu on 2016/4/27.
  */
-public abstract class BaseActivity extends FragmentActivity {
+public class BaseActivity extends PermissionActivity {
 
-    public final String TAG = getClass().getSimpleName();
-    protected Resources resources;
+    private Fragment currentFragment;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        resources = getResources();
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
-    public void finishWithNoAnim() {
-        super.finish();
-    }
-
-    public void startActivityWithNoAnim(Intent intent) {
-        super.startActivity(intent);
-    }
-
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
-    }
-
-    public void hideSoftKeyboard() {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
-            if (getCurrentFocus() != null)
-                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+    public void switchFragment(Fragment fragment){
+        if (currentFragment!=null&&currentFragment==fragment){
+            return;
         }
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        if (currentFragment!=null){
+            ft.hide(currentFragment);
+        }
+        ft.show(fragment);
+        ft.commitAllowingStateLoss();
+        currentFragment=fragment;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            //MobclickAgent.onResume(this);
+        } catch (Throwable e) {
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        try {
+            //MobclickAgent.onPause(this);
+        } catch (Throwable e) {
+        }
+        super.onPause();
+    }
+
+    public void registerFragment(int id, Fragment fragment){
+        if (currentFragment==fragment){
+            return;
+
+        }
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        if (currentFragment!=null){
+            ft.hide(currentFragment);
+        }
+        ft.add(id,fragment,fragment.getClass().getName());
+        ft.commit();
+        currentFragment=fragment;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return (super.onOptionsItemSelected(item));
+    }
+
+    protected void recoverFragment(String currentFragmentTag){
+        if (currentFragmentTag==null){
+            return;
+        }
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        List<Fragment> fragments=fm.getFragments();
+        for (Fragment fragment:fragments){
+            if (fragment.getTag().equals(currentFragmentTag)){
+                ft.show(fragment);
+            }else {
+                ft.hide(fragment);
+            }
+        }
+        ft.commitAllowingStateLoss();
+        Fragment current=fm.findFragmentByTag(currentFragmentTag);
+        switchFragment(current);
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        removeDialogFragment();
+        super.onSaveInstanceState(outState);
+    }
+
+    protected void removeDialogFragment(){
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        List<Fragment> fragments=fm.getFragments();
+        if (fragments==null){
+            return;
+        }
+        for (Fragment fragment:fragments){
+            if (fragment instanceof DialogFragment){
+                ft.remove(fragment);
+            }
+        }
+        ft.commitAllowingStateLoss();
     }
 }

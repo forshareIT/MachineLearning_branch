@@ -10,11 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.ustc.aaron.learningtest.MainActivity">
+    tools:context="com.ustc.aaron.learningtest.MainActivityOld">
 
-    <TextView
-        android:id="@+id/tv_helloworld"
+    <Button
+        android:id="@+id/tv_helloOCR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="点击进入OCR" />
 </LinearLayout>

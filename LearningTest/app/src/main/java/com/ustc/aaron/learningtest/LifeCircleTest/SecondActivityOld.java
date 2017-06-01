@@ -3,10 +3,10 @@ package com.ustc.aaron.learningtest.LifeCircleTest;
 import android.os.Bundle;
 
 import com.ustc.aaron.learningtest.R;
-import com.ustc.aaron.learningtest.base.BaseActivity;
+import com.ustc.aaron.learningtest.base.BaseActivityOld;
 import com.ustc.aaron.learningtest.utils.LogOut;
 
-public class SecondActivity extends BaseActivity {
+public class SecondActivityOld extends BaseActivityOld {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

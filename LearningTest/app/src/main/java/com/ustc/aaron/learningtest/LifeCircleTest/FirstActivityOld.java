@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ustc.aaron.learningtest.R;
-import com.ustc.aaron.learningtest.base.BaseActivity;
+import com.ustc.aaron.learningtest.base.BaseActivityOld;
 import com.ustc.aaron.learningtest.utils.LogOut;
 
-public class FirstActivity extends BaseActivity implements View.OnClickListener{
+public class FirstActivityOld extends BaseActivityOld implements View.OnClickListener{
 
     private TextView tv_first;
     @Override
@@ -32,7 +32,7 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.tv_first:
-                startActivity(new Intent(this,SecondActivity.class));
+                startActivity(new Intent(this,SecondActivityOld.class));
                 break;
         }
     }

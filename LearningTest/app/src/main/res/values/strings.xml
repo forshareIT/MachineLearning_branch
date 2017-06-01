@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">LearningTest</string>
+    <string name="ask_again">请给予应用必要权限，让程序可正常工作。</string>
+    <string name="setting">设置</string>
+    <string name="perm_tip">缺少运行所需权限。\n请点击"设置"-"权限"-打开权限。\n再点击两次后退按钮返回本页。</string>
+    <string name="cancel">取消</string>
+    <string name="pick_image_intent_chooser_title">选择来源</string>
+    <string name="title_cropper">剪裁图片</string>
+    <string name="setting_floatview">设置悬浮球样式</string>
+    <string name="crop_image_menu_rotate_left">左旋转</string>
+    <string name="crop_image_menu_rotate_right">右旋转</string>
+    <string name="crop_image_menu_crop">剪裁</string>
+    <string name="title_white_list">白名单</string>
+    <string name="select_monitor_list">请选择:</string>
+    <string name="select_list">点击选择:</string>
+    <string name="system_app">系统应用</string>
+    <string name="user_app">第三方应用</string>
+    <string name="search">搜索</string>
+    <string name="stringValue3">从图库中选取图片识别</string>
+    <string name="wait_until_loaded">加载中，请稍后再操作</string>
+    <string name="stringValue4">拍照识别</string>
+    <string name="click_show_bigbang">点击炸开文字</string>
+    <string name="search_">以图搜图</string>
+    <string name="stringValue5">重新识别</string>
+    <string name="ocr_picture">从图片中识别</string>
+    <string name="upload_img">开始上传图片</string>
+    <string name="ocr_quote_beyond_time">\t\t非常抱歉，由于我们使用的是第三方付费OCR服务，作者每月需要为此支付数千元的费用。\n\t\t为了用户体验，本应用一直不愿接入广告，而热心用户的捐赠也有限，现已无力承担此费用.\n\t\t为了您的使用体验，麻烦您花几分钟时间进行设置，以继续免费使用OCR服务！</string>
+    <string name="free_use">如何免费使用OCR</string>
+
 </resources>
