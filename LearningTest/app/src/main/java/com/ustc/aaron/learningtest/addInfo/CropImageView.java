@@ -48,21 +48,25 @@ public class CropImageView extends FrameLayout {
 
     /**
      * Image view widget used to show the image for cropping.
+     * 要被裁剪的图，用来当做背景
      */
     private final ImageView mImageView;
 
     /**
      * Overlay over the image view to show cropping UI.
+     * 裁剪框view
      */
     private final CropOverlayView mCropOverlayView;
 
     /**
      * The matrix used to transform the cropping image in the image view
+     * 裁剪矩阵
      */
     private final Matrix mImageMatrix = new Matrix();
 
     /**
      * Reusing matrix instance for reverse matrix calculations.
+     * 转置矩阵
      */
     private final Matrix mImageInverseMatrix = new Matrix();
 
@@ -399,6 +403,7 @@ public class CropImageView extends FrameLayout {
 
     /**
      * whether the aspect ratio is fixed or not; true fixes the aspect ratio, while false allows it to be changed.
+     * 长宽比是否固定; true修正宽高比，而false则允许更改。
      */
     public boolean isFixAspectRatio() {
         return mCropOverlayView.isFixAspectRatio();

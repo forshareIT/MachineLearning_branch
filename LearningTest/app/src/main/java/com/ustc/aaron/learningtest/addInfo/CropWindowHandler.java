@@ -28,6 +28,7 @@ final class CropWindowHandler {
 
     /**
      * Rectangle used to return the edges rectangle without ability to change it and without creating new all the time.
+     *
      */
     private final RectF mGetEdges = new RectF();
 
@@ -216,6 +217,7 @@ final class CropWindowHandler {
     /**
      * Determines which, if any, of the handles are pressed given the touch
      * coordinates, the bounding box, and the touch radius.
+     * 确定按触摸坐标，边界框和触摸半径按下哪个手柄（如果有的话）。
      *
      * @param x the x-coordinate of the touch point
      * @param y the y-coordinate of the touch point
